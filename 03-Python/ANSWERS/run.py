@@ -31,7 +31,7 @@ else:
 # cre el path con el directorio para guardar las nuevas imagenes 
 if not os.path.isdir("./resized_images"):
     os.system('mkdir ./resized_images')
-else :
+else:
     os.system('rm -r ./resized_images')
 
 dataPath = './BSR/BSDS500/data'
@@ -107,7 +107,7 @@ def show_images(images , boundary , segmentation, cols ):
         fig.axes.get_xaxis().set_visible(False)
         fig.axes.get_yaxis().set_visible(False)
 
-        img = np.uint8(np.squeeze( segmentation[:,:,:,n] ))
+        img = np.uint8(np.squeeze(segmentation[:,:,:,n] ))
         fig =plt.subplot(3,cols,  n+cols+1)
         fig =plt.imshow(img, cmap = 'gray')
         fig.axes.get_xaxis().set_visible(False)
@@ -126,6 +126,7 @@ segmentation_gt = np.expand_dims(segmentation_gt , axis=2)
 boundary_gt = np.expand_dims(boundary_gt , axis=2)
 
 data_dict = {'Images': ims, 'Segmentation': segmentation_gt, 'Boundaries': boundary_gt}
+
 with open('./data_dict.pickle', 'wb') as handle:
     pickle.dump(data_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
