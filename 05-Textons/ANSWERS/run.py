@@ -1,21 +1,16 @@
 #!/usr/bin/env python3
-
 import os
 import time
 import numpy as np
 import random
 import pickle
-
 # matplotlib inline
 import matplotlib.pyplot as plt
 # OpenCV packages
 import cv2
 # for reading .mat files
 import scipy.io as spio
-
 import sys
-
-
 
 
 if not os.path.isfile("./train_test_ims.pickle"):
@@ -53,8 +48,7 @@ k = 25
 
 #Apply filterbank to sample image
 from fbRun import fbRun
-
-
+a
 im_train = np.reshape(im_train,(256,256,-1))
 ims_to_textons = im_train[:,:,0]
 
@@ -82,18 +76,19 @@ with open('./filter_responses.pickle', 'wb') as handle:
 ## NUMBER OF TOTAL PIXEL FOR TRAIN 49,152,000
 
 
-
-print("Computing textons from filter responses, consider k textons...")
+k = np.array([25 30 40 50 60 70 80 90 100])
+for kk in enumerate(k):
+    print("Computing textons from filter responses, consider k textons...")
 
 #Computer textons from filter
-from computeTextons import computeTextons
-map, textons = computeTextons(filterResponses, k)
+    from computeTextons import computeTextons
+    map, textons = computeTextons(te, kk[1])
 
 
-map_textons = {"Map", map, "Textons", textons}
+    map_textons = {"Map", map, "Textons", textons}
 
-with open('./map_textons.pickle', 'wb') as handle:
-        pickle.dump(map_textons, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    with open('./map_textons'+str(kk[1])+'.pickle', 'wb') as handle:
+            pickle.dump(map_textons, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
 

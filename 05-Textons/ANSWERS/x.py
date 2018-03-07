@@ -30,5 +30,5 @@ im_train = np.reshape(im_train,(256,256,-1))
 
 
 
-plt.imshow(np.squeeze(im_train[:,:,180]),cmap='gray')
+plt.imshow(np.squeeze(im_train[:,:,]),cmap='gray')
 plt.show()
